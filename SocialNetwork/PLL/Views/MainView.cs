@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialNetwork.PLL.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace SocialNetwork.PLL.Views
     {
         public void Show()
         {
+            InfoMessage.Show("\n<<< СОЦИАЛЬНАЯ СЕТЬ >>>\n");
             Console.WriteLine("Войти в профиль (нажмите 1)");
             Console.WriteLine("Зарегистрироваться (нажмите 2)");
 

@@ -12,8 +12,9 @@ namespace SocialNetwork.BLL.UserServices
 {
     public class MessageService
     {
-        IMessageRepository messageRepository;
         IUserRepository userRepository;
+        IMessageRepository messageRepository;
+
         public MessageService()
         {
             userRepository = new UserRepository();

@@ -25,20 +25,20 @@ namespace SocialNetwork.PLL.Views
             Console.WriteLine("Для создания нового профиля введите ваше имя:");
             userRegistrationData.FirstName = Console.ReadLine();
 
-            Console.Write("Ваша фамилия:");
+            Console.Write("Ваша фамилия: ");
             userRegistrationData.LastName = Console.ReadLine();
 
-            Console.Write("Пароль:");
+            Console.Write("Пароль: ");
             userRegistrationData.Password = Console.ReadLine();
 
-            Console.Write("Почтовый адрес:");
+            Console.Write("Почтовый адрес: ");
             userRegistrationData.Email = Console.ReadLine();
 
             try
             {
-                this.userService.Register(userRegistrationData);
+                userService.Register(userRegistrationData);
 
-                SuccessMessage.Show("Ваш профиль успешно создан. Теперь Вы можете войти в систему под своими учетными данными.");
+                SuccessMessage.Show("Ваш профиль успешно создан! Теперь Вы можете войти в систему под своими учетными данными.");
             }
 
             catch (ArgumentNullException)

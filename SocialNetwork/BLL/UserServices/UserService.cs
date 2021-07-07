@@ -13,13 +13,15 @@ namespace SocialNetwork.BLL.UserServices
 {
     public class UserService
     {
-        MessageService messageService;
         IUserRepository userRepository;
+        MessageService messageService;
+        FriendService friendService;
 
         public UserService()
         {
             userRepository = new UserRepository();
             messageService = new MessageService();
+            friendService = new FriendService();
         }
 
         public void Register(UserRegistrationData userRegistrationData)
@@ -53,9 +55,8 @@ namespace SocialNetwork.BLL.UserServices
                 email = userRegistrationData.Email
             };
 
-            if (this.userRepository.Create(userEntity) == 0)
+            if (userRepository.Create(userEntity) == 0)
                 throw new Exception();
-
         }
 
         public User Authenticate(UserAuthenticationData userAuthenticationData)
@@ -99,15 +100,15 @@ namespace SocialNetwork.BLL.UserServices
                 favorite_book = user.FavoriteBook
             };
 
-            if (this.userRepository.Update(updatableUserEntity) == 0)
+            if (userRepository.Update(updatableUserEntity) == 0)
                 throw new Exception();
         }
 
         private User ConstructUserModel(UserEntity userEntity)
         {
             var incomingMessages = messageService.GetIncomingMessagesByUserId(userEntity.id);
-
             var outgoingMessages = messageService.GetOutcomingMessagesByUserId(userEntity.id);
+            var friends = friendService.GetFriendsByUserId(userEntity.id);
 
             return new User(userEntity.id,
                             userEntity.firstname,
@@ -118,7 +119,8 @@ namespace SocialNetwork.BLL.UserServices
                             userEntity.favorite_movie,
                             userEntity.favorite_book,
                             incomingMessages,
-                            outgoingMessages);
+                            outgoingMessages,
+                            friends);
         }
     }
 }
