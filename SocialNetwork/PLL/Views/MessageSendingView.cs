@@ -52,6 +52,11 @@ namespace SocialNetwork.PLL.Views
                 AlertMessage.Show("Введите корректное значение!");
             }
 
+            catch (ArgumentOutOfRangeException)
+            {
+                AlertMessage.Show("Сообщение слишком большое!");
+            }
+
             catch (Exception)
             {
                 AlertMessage.Show("Произошла ошибка при отправке сообщения!");
