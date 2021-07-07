@@ -38,14 +38,14 @@ namespace SocialNetwork.BLL.UserServices
 
         public void AddFriend(FriendAddingData friendAddingData)
         {
-            var findFriendEntity = userRepository.FindByEmail(friendAddingData.FriendEmail);
+            var findUserEntity = userRepository.FindByEmail(friendAddingData.FriendEmail);
 
-            if (findFriendEntity is null) throw new UserNotFoundException();
+            if (findUserEntity is null) throw new UserNotFoundException();
 
             var friendEntity = new FriendEntity()
             {
                 user_id = friendAddingData.UserId,
-                friend_id = findFriendEntity.id
+                friend_id = findUserEntity.id
             };
 
             if (friendRepository.Create(friendEntity) == 0)
