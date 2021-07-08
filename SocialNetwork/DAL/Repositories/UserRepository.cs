@@ -32,8 +32,10 @@ namespace SocialNetwork.DAL.Repositories
 
         public int Update(UserEntity userEntity)
         {
-            return Execute(@"update users set firstname = :firstname, lastname = :lastname, password = :password, email = :email,
-                             photo = :photo, favorite_movie = :favorite_movie, favorite_book = :favorite_book", userEntity);
+            return Execute(@"update users set firstname = :firstname, lastname = :lastname, 
+                             password = :password, email = :email, photo = :photo, 
+                             favorite_movie = :favorite_movie, favorite_book = :favorite_book 
+                             where id = :id", userEntity);
         }
 
         public int DeleteById(int id)
